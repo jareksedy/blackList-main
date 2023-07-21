@@ -48,7 +48,12 @@ class ViewController: UIViewController {
         if let sheet = menuViewController.sheetPresentationController {
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 24
-            sheet.detents = [.medium()]
+            let fraction = UISheetPresentationController.Detent.custom { context in
+                return 150
+                //UIScreen.main.bounds.height * 0.25
+            }
+            
+            sheet.detents = [fraction, .medium(), .large()]
         }
         present(menuViewController, animated: true, completion: nil)
     }
